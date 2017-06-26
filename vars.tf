@@ -14,9 +14,8 @@ variable "cidr" {
     default = "10.0.0.0/16"
 }
 
-variable "internal_dns_name" {
+variable "dns_name" {
     type = "string"
-    default = ""
     description = "The `name` to be used with the route53 internal zone on the VPC. Defaults to {var.app}{var.env}.internal"
 }
 

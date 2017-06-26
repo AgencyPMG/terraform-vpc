@@ -1,5 +1,5 @@
 resource "aws_route53_zone" "main" {
-    name = "${var.internal_dns_name}"
+    name = "${var.dns_name}"
     vpc_id = "${aws_vpc.main.id}"
     comment = "${var.app}/${var.env} internal dns zone"
     tags {
