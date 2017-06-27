@@ -5,4 +5,5 @@ module "public" {
     azs = ["${var.public_subnet_azs}"]
     app = "${var.app}"
     env = "${var.env}"
+    igw_id = "${aws_internet_gateway.main.id}"
 }

@@ -22,6 +22,10 @@ variable "cidr" {
     type = "string"
 }
 
+variable "igw_id" {
+    type = "string"
+}
+
 variable "name_suffix" {
     type = "string"
     default = "public"

@@ -19,6 +19,7 @@ module "private_nats" {
     azs = ["${var.private_subnet_azs}"]
     app = "${var.app}"
     env = "${var.env}"
+    igw_id = "${aws_internet_gateway.main.id}"
     name_suffix = "private nat"
     public_on_launch = false
 }

@@ -12,16 +12,6 @@ resource "aws_subnet" "public" {
     }
 }
 
-resource "aws_internet_gateway" "public" {
-    count = "${length(var.azs) > 0 ? 1 : 0}"
-    vpc_id = "${var.vpc_id}"
-    tags {
-        Name = "${var.app}/${var.env} ${var.name_suffix}"
-        Application = "${var.app}"
-        Environment = "${var.env}"
-    }
-}
-
 resource "aws_route_table" "public" {
     count = "${length(var.azs) > 0 ? 1 : 0}"
     vpc_id = "${var.vpc_id}"
@@ -36,7 +26,7 @@ resource "aws_route" "public" {
     count = "${length(var.azs) > 0 ? 1 : 0}"
     route_table_id = "${aws_route_table.public.id}"
     destination_cidr_block = "0.0.0.0/0"
-    gateway_id = "${aws_internet_gateway.public.id}"
+    gateway_id = "${var.igw_id}"
 }
 
 resource "aws_route_table_association" "public" {
