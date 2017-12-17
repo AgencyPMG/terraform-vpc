@@ -18,6 +18,10 @@ output "private_route_table_ids" {
     value = ["${aws_route_table.private.*.id}"]
 }
 
+output "private_nat_ips" {
+    value = ["${aws_eip.nat.*.public_ip}"]
+}
+
 output "internal_subnet_ids" {
     value = ["${aws_subnet.internal.*.id}"]
 }
@@ -28,4 +32,8 @@ output "internal_route_table_id" {
 
 output "dns_zone_id" {
     value = "${aws_route53_zone.main.zone_id}"
+}
+
+output "dns_zone_name" {
+    value = "${aws_route53_zone.main.name}"
 }
