@@ -1,6 +1,4 @@
-data "aws_region" "current" {
-    current = true
-}
+data "aws_region" "current" {}
 
 resource "aws_vpc_endpoint" "s3" {
     vpc_id = "${aws_vpc.main.id}"
