@@ -7,7 +7,7 @@ output "public_subnet_ids" {
 }
 
 output "public_route_table_id" {
-    value = "${module.public.route_table_id}"
+    value = ["${module.public.route_table_id}"]
 }
 
 output "private_subnet_ids" {
@@ -27,7 +27,7 @@ output "internal_subnet_ids" {
 }
 
 output "internal_route_table_id" {
-    value = "${aws_route_table.internal.id}"
+    value = ["${aws_route_table.internal.*.id}"]
 }
 
 output "dns_zone_id" {
