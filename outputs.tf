@@ -27,7 +27,7 @@ output "internal_subnet_ids" {
 }
 
 output "internal_route_table_id" {
-    value = "${aws_route_table.internal.id}"
+    value = "${element(concat(aws_route_table.internal.*.id, list("")), 0)}"
 }
 
 output "dns_zone_id" {
