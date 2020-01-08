@@ -25,9 +25,24 @@ resource "aws_vpc_endpoint_route_table_association" "internal-s3" {
 }
 
 # ecr vpc endpoints
-data "aws_security_group" "default" {
-  vpc_id = "${aws_vpc.main.id}"
-  name   = "default"
+resource "aws_security_group" "vpc-endpoints" {
+  name        = "vpc-endpoints@${var.app}${var.env}"
+  description = "allow access to vpc-endpoints for ${var.app} ${var.env}"
+  vpc_id      = "${aws_vpc.main.id}"
+
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["${var.cidr}"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["${var.cidr}"]
+  }
 }
 
 data "aws_vpc_endpoint_service" "ecr-api" {
@@ -43,7 +58,7 @@ resource "aws_vpc_endpoint" "ecr-api" {
   private_dns_enabled = true
 
   security_group_ids = [
-    "${data.aws_security_group.default.id}"
+    "${aws_security_group.vpc-endpoints.id}",
   ]
 }
 
@@ -60,6 +75,6 @@ resource "aws_vpc_endpoint" "ecr-dkr" {
   private_dns_enabled = true
 
   security_group_ids = [
-    "${data.aws_security_group.default.id}"
+    "${aws_security_group.vpc-endpoints.id}",
   ]
 }
