@@ -3,11 +3,11 @@ output "vpc_id" {
 }
 
 output "public_subnet_ids" {
-  value = [module.public.subnet_ids]
+  value = module.public.subnet_ids
 }
 
 output "public_subnet_arns" {
-  value = [module.public.subnet_arns]
+  value = module.public.subnet_arns
 }
 
 output "public_route_table_id" {
@@ -15,27 +15,27 @@ output "public_route_table_id" {
 }
 
 output "private_subnet_ids" {
-  value = [aws_subnet.private.*.id]
+  value = aws_subnet.private.*.id
 }
 
 output "private_subnet_arns" {
-  value = [aws_subnet.private.*.arn]
+  value = aws_subnet.private.*.arn
 }
 
 output "private_route_table_ids" {
-  value = [aws_route_table.private.*.id]
+  value = aws_route_table.private.*.id
 }
 
 output "private_nat_ips" {
-  value = [aws_eip.nat.*.public_ip]
+  value = aws_eip.nat.*.public_ip
 }
 
 output "internal_subnet_ids" {
-  value = [aws_subnet.internal.*.id]
+  value = aws_subnet.internal.*.id
 }
 
 output "internal_subnet_arns" {
-  value = [aws_subnet.internal.*.arn]
+  value = aws_subnet.internal.*.arn
 }
 
 output "internal_route_table_id" {
