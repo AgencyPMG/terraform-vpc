@@ -16,7 +16,7 @@ module "private_nats" {
   vpc_id           = aws_vpc.main.id
   cidr             = var.cidr
   cidr_offset      = 100
-  azs              = [var.private_subnet_azs]
+  azs              = var.private_subnet_azs
   app              = var.app
   env              = var.env
   igw_id           = aws_internet_gateway.main.id
